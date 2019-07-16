@@ -3,5 +3,5 @@ docker:
 
 
 push: docker
-	${DOCKER_PASSWORD} | docker login -u ${DOCKER_LOGIN} --password-stdin \
+	echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_LOGIN}" --password-stdin \
 	docker push camposss/http-server:${TAG}
