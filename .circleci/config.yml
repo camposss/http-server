@@ -13,7 +13,7 @@ jobs:
           command: |
               # source $BASH_ENV
               TAG=$CIRCLE_WORKFLOW_ID
-              docker build -t http-server:$TAG 
+              docker build -t http-server:$TAG ../
       - run: 
           name: "Login and Push Docker Image"
           command: |
