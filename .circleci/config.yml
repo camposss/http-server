@@ -1,0 +1,20 @@
+version: 2 
+jobs: 
+  build:
+    docker: 
+      - image: "circleci/golang:1.12"
+    working_directory: /go/src/github.com/camposss/tech-talks/http-server
+    steps: 
+      - checkout
+      - setup_remote_docker: 
+          docker_layer_caching: true
+      - run: 
+          name: "Build Docker Image"
+          command: |
+              # source $BASH_ENV
+              docker build -t http-server:${TAG} TAG=$CIRCLE_WORKFLOW_ID
+      - run: 
+          name: "Login and Push Docker Image"
+          command: |
+              ${DOCKER_PASSWORD} | docker login -u ${DOCKER_LOGIN} --password-stdin
+              docker push camposss/http-server:${TAG}
