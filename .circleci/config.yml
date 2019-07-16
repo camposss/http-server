@@ -17,6 +17,7 @@ jobs:
       - run: 
           name: "Login and Push Docker Image"
           command: |
-            make push
+            TAG=$CIRCLE_WORKFLOW_ID
+            make push TAG=$TAG
 
             
